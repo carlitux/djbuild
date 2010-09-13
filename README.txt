@@ -1,7 +1,7 @@
 Description
 ===========
 
-Based on djangorecipe.
+Based on djbuild.
 
 This buildout recipe can be used to create a setup for Django. It will
 automatically download Django and install it in the buildout's
@@ -134,7 +134,7 @@ The next example shows you how to use some more of the options::
     http://django-mptt.googlecode.com/svn/trunk/ django-mptt
 
   [django]
-  recipe = djangorecipe
+  recipe = djbuild
   version = trunk
   settings = development
   project = exampleproject
@@ -167,7 +167,7 @@ path::
   urls		= http://svn.pinaxproject.com/pinax/tags/0.5.1rc1	pinax
 
   [myproject]
-  recipe	= djangorecipe
+  recipe	= djbuild
   version	= 1.0.2
   eggs		= PIL
   project	= myproject
@@ -196,7 +196,7 @@ generated script use something like::
   executable = /some/special/python
 
   [myproject]
-  recipe	= djangorecipe
+  recipe	= djbuild
   version	= 1.0.2
   project	= myproject
   python	= special-python
