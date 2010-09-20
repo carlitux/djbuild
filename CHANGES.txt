@@ -1,2 +1,3 @@
 Changes
 =======
+Adding automatic install projects into pypi or custom url

@@ -1,7 +1,7 @@
 Description
 ===========
 
-Based on djbuild.
+Based on djangorecipe and code from setuptools used.
 
 This buildout recipe can be used to create a setup for Django. It will
 automatically download Django and install it in the buildout's
@@ -35,6 +35,18 @@ Supported options
 =================
 
 The recipe supports the following options.
+
+apps 
+  projects that can be installed using pypi or compressed files. No handle
+  dependencies do it by hand using buildout, the decision was taken for these reasons:
+  
+  * if dependency is a django app this should be declared into this option to install
+    it into the extarnal-apps directory or it should be omited if the dependency
+    was customized and it is on local-apps directory
+    
+  * if dependency is not a django app this should be declared into eggs option.
+  
+  To delete an application sould be by hand.
 
 project
   This option sets the name for your project. The recipe will create a
@@ -98,6 +110,9 @@ test
 testrunner
   This is the name of the testrunner which will be created. It
   defaults to `test`.
+  
+find-links
+  used to install apps
 
 All following options only have effect when the project specified by
 the project option has not been created already, on the setting file 

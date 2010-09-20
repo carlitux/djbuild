@@ -1,19 +1,14 @@
 import os
 import re
 import shutil
-import subprocess
 import urllib2
+import templates
 import setuptools
-
-from setuptools.command.easy_install import main as install
-
-from setuptools import setup
-from setuptools.dist import Distribution
-
-from zc.buildout import UserError
+import subprocess
 import zc.recipe.egg
 
-import templates
+from zc.buildout import UserError
+from dist_installer import install
 
 class Installer:
     
@@ -280,6 +275,65 @@ class Installer:
         if not os.path.exists(self.options['external-apps']):
             self.log.info("DjBuild: creating external-apps dir %s"%(self.options['external-apps']))
             os.makedirs(self.options['external-apps'])
+            
+        answer = raw_input("Do you want to install/update apps?(yes/no): ")
+        
+        if answer.lower() == 'yes':
+            print '\n************** Intalling django apps **************\n'
+            apps = self.options.get('apps', '').split()
+            if len(apps) == 0:
+                self.log.info('No apps to install')
+            else:
+                install_dir = os.path.abspath(self.options['external-apps'])
+                
+                args = ['-U', '-b', self.buildout['buildout']['download-cache'], '-d', install_dir]
+                args.extend(apps)
+                
+                links = self.options.get('find-links', '').split()
+                
+                if len(links)>0:
+                    links.insert(0, '-f')
+                    args.extend(links)
+                    
+                install(args)
+            print '\n************** Intalling django apps **************\n'
+            
+        print'\n************** Searching for apps config **************\n'
+        
+        os.environ["DJANGO_SETTINGS_MODULE"] = '%s.project.%s.settings' % (self.options['project'], self.options['settings'])
+               
+        from django.conf import settings
+        
+        apps = os.listdir(self.options['external-apps'])
+        local_apps = os.listdir(self.options['local-apps'])
+        
+        # apps into external apps 
+        dne = [ x for x in settings.INSTALLED_APPS[:] if x.find('.') == -1 and x not in local_apps] # django and not external
+        end = [] # external and not django
+        
+        del local_apps
+        
+        for app in apps:
+            if app not in settings.INSTALLED_APPS:
+                end.append(app)
+            elif app in dne:
+                dne.remove(app)
+        
+        # searching for installed apps into djando but not into external-apps directory
+       
+        if len(end) > 0:
+            self.log.warning('These sources apps are installed but not used into django project: \n\t* %s\n'%'\n\t* '.join(end))
+                
+        # searching for non installed apps into djando but installed into external-apps directory
+        if len(dne) > 0:
+            self.log.warning('These apps are installed into django but source not installed: \n\t* %s'%'\n\t* '.join(dne))
+            
+        if len(dne) == 0 and len(end) == 0:
+            self.log.info('\nAll is synced')
+        
+        print '\n************** Searching for apps config **************\n'
+        
+        del os.environ["DJANGO_SETTINGS_MODULE"]
     
     def verify_or_create_download_dir(self, download_dir):
         if not os.path.exists(download_dir):

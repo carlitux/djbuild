@@ -42,6 +42,7 @@ class DjBuild(object):
 
 
     def install(self):
+        print '\n------------------ Installing DjBuild ------------------\n'
         version = self.options['version']
         location = self.options['location']
         base_dir = self.buildout['buildout']['directory']
@@ -59,6 +60,8 @@ class DjBuild(object):
         self.__installer.install_project(project_dir, self.options['project'])
         
         script_paths = self.__installer.install_scripts(extra_path, ws)
+        
+        print '\n------------------ Installing DjBuild ------------------\n'
 
         return script_paths + [location]
 
