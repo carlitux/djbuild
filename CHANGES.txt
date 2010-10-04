@@ -1,3 +1,4 @@
 Changes
 =======
-Adding automatic install projects into pypi or custom url
+Adding automatic install projects into external-apps from 
+pypi or custom url
