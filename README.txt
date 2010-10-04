@@ -1,6 +1,8 @@
 Description
 ===========
 
+*Please send me feedback and comments to carlitos.kyo@gmail.com*
+
 Based on djangorecipe and code from setuptools used.
 
 This buildout recipe can be used to create a setup for Django. It will
@@ -46,7 +48,7 @@ apps
     
   * if dependency is not a django app this should be declared into eggs option.
   
-  To delete an application sould be by hand.
+  To delete an application should be by hand.
 
 project
   This option sets the name for your project. The recipe will create a
