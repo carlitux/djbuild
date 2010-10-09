@@ -2,3 +2,5 @@ Changes
 =======
 Adding automatic install projects into external-apps from 
 pypi or custom url
+
+09-Oct-2010: deleting install call where installed mtweet on dist_installer.py
