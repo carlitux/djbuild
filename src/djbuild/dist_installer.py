@@ -319,4 +319,3 @@ usage: %(script)s [options] requirement_or_url ...
         )
     )
 
-install(['-U', '-b', '/home/kyo/Projects/python/pure/djbuild/downloads/', '-d', '/home/kyo/Projects/python/pure/djbuild/src/koe/apps/', 'http://github.com/downloads/carlitux/mtweets/mtweets-0.1-alpha.tar.gz'])
