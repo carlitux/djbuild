@@ -9,12 +9,11 @@ def read_file(name):
                              name)).read()
 
 readme = read_file('README.txt')
-changes = read_file('CHANGES.txt')
 
 setup(name='djbuild',
       version=version,
       description="Buildout recipe for Django",
-      long_description='\n\n'.join([readme, changes]),
+      long_description='\n\n'.join([readme]),
       classifiers=[
         'Framework :: Buildout',
         'Framework :: Django',
