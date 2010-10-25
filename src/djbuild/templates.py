@@ -73,7 +73,7 @@ FCGI_OPTIONS = getattr(settings, 'FCGI_OPTIONS', {})
 runfastcgi(FCGI_OPTIONS)
 '''
 
-base_html = ''' {% load i18n %}
+base_html = '''{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>

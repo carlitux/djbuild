@@ -9,3 +9,4 @@ pypi or custom url
 25-Oct-2010: fixing bug find-link option now into the correct place to install
 25-Oct-2010: when creating the project creating templates dir
 25-Oct-2010: adding base templates base.html, 404.html, 500.html
+25-Oct-2010: updating templates
