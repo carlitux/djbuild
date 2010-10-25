@@ -1,4 +1,5 @@
 import logging, os, zc.buildout
+import sys
 import os
 
 from installer import Installer
@@ -48,6 +49,9 @@ class DjBuild(object):
         base_dir = self.buildout['buildout']['directory']
         project_dir = os.path.join(base_dir, 'src')
         download_dir = self.buildout['buildout']['download-cache']
+        
+        # updating sys.path to find django settings
+        sys.path.insert(0, project_dir)
         
         extra_path = self.__installer.get_extra_paths()
         requirements, ws = self.egg.working_set(['djbuild'])

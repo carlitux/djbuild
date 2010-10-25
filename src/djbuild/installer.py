@@ -108,7 +108,7 @@ class Installer:
         local_apps_dir = os.path.join(basic_dir, self.options['project'], self.options['local-apps'])
         external_apps_dir = os.path.join(basic_dir, self.options['project'], self.options['external-apps'])
         extra_paths = [self.options['location'],
-                       self.buildout['buildout']['directory'],
+                       basic_dir, # now insert into extra path basic dir project
                        local_apps_dir, external_apps_dir]
 
         # Add libraries found by a site .pth files to our extra-paths.
@@ -139,9 +139,12 @@ class Installer:
             cmd, shell=True, stdout=output, **kwargs)
         return command.wait()
 
-    def create_file(self, file, template, options):
+    def create_file(self, file, template, options=None):
         f = open(file, 'w')
-        f.write(template % options)
+        if options is not None:
+            f.write(template % options)
+        else:
+            f.write(template)
         f.close()
     
     def create_manage_script(self, extra_paths, ws):
@@ -247,6 +250,11 @@ class Installer:
         self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project']})
         self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project']})
         
+        os.makedirs('templates')
+        self.create_file("templates/base.html", templates.base_html)
+        self.create_file("templates/404.html", templates.t_404_html)
+        self.create_file("templates/500.html", templates.t_500_html)
+        
         # updating to original cwd
         os.chdir(old_cwd)
         
@@ -285,16 +293,14 @@ class Installer:
                 self.log.info('No apps to install')
             else:
                 install_dir = os.path.abspath(self.options['external-apps'])
-                
                 args = ['-U', '-b', self.buildout['buildout']['download-cache'], '-d', install_dir]
-                args.extend(apps)
-                
                 links = self.options.get('find-links', '').split()
                 
                 if len(links)>0:
                     links.insert(0, '-f')
                     args.extend(links)
                     
+                args.extend(apps)
                 install(args)
             print '\n************** Intalling django apps **************\n'
             

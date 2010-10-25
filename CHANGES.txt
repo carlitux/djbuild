@@ -4,3 +4,8 @@ Adding automatic install projects into external-apps from
 pypi or custom url
 
 09-Oct-2010: deleting install call where installed mtweet on dist_installer.py
+24-Oct-2010: fixing bug adding src directory into sys.path to find module settings (django project)
+24-Oct-2010: fixing bug adding src directory into extra-path to generete script to find project into src directory
+25-Oct-2010: fixing bug find-link option now into the correct place to install
+25-Oct-2010: when creating the project creating templates dir
+25-Oct-2010: adding base templates base.html, 404.html, 500.html
