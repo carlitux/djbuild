@@ -1,5 +1,4 @@
-production_settings = '''
-from %(project)s.settings import *
+production_settings = '''from %(project)s.settings import *
 
 INSTALLED_APPS += (
     # Uncomment the next line to enable the admin:
@@ -7,10 +6,26 @@ INSTALLED_APPS += (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+ROOT_URLCONF = '%(project)s.project.development.urls'
 '''
 
-development_settings = '''
-from %(project)s.settings import *
+production_urls = '''from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import include
+
+from %(project)s.urls import urlpatterns
+
+urlpatterns = patterns('',
+    #(r'^pushinit/', include('myproject.urls')),
+) + urlpatterns
+'''
+
+development_settings = '''from %(project)s.settings import *
+
+import os
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 DEBUG=True
 TEMPLATE_DEBUG=DEBUG
 
@@ -20,6 +35,25 @@ INSTALLED_APPS += (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+ROOT_URLCONF = '%(project)s.project.development.urls'
+'''
+
+development_urls = '''from django.conf import settings
+from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import include
+
+from %(project)s.urls import urlpatterns
+
+urlpatterns = patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.SITE_ROOT + '/static/'
+    , 'show_indexes': True}),
+    (r'^uploads/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.SITE_ROOT + '/uploads/'
+    , 'show_indexes': True}),
+    #(r'^init/', include('myproject.urls')),
+) + urlpatterns
 '''
 
 testing_settings = '''
@@ -33,6 +67,18 @@ INSTALLED_APPS += (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+ROOT_URLCONF = '%(project)s.project.development.urls'
+'''
+
+testing_urls = '''from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import include
+
+from %(project)s.urls import urlpatterns
+
+urlpatterns = patterns('',
+    #(r'^init/', include('myproject.urls')),
+) + urlpatterns
 '''
 
 wsgi = '''#!/usr/bin/python

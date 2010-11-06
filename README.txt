@@ -12,6 +12,9 @@ subversion checkout (by using `trunk` instead of a version number).
 
 The directory structure is based on: http://django.es/blog/convenciones-proyecto-django/
 
+logs directory to handle separete logs from webserver
+urls into project packages used to handle differents urls for each project
+
 You can see an example of how to use the recipe below::
 
   [buildout]

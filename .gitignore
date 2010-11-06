@@ -1,0 +1,12 @@
+bin/
+develop-eggs/
+eggs/
+parts/
+downloads/
+*.pyc
+.installed.cfg
+.project
+.pydevproject
+dist/
+src/djbuild.egg-info/
+src/koe/

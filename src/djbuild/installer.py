@@ -231,7 +231,7 @@ class Installer:
         os.makedirs('tests')
         os.makedirs('uploads')
         os.makedirs('deploy')
-        
+                
         os.makedirs('static/css')
         os.makedirs('static/js')
         os.makedirs('static/images')
@@ -250,10 +250,27 @@ class Installer:
         self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project']})
         self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project']})
         
+        self.create_file("project/development/urls.py", templates.development_urls, {'project':self.options['project']})
+        self.create_file("project/production/urls.py", templates.production_urls, {'project':self.options['project']})
+        self.create_file("project/test/urls.py", templates.testing_urls, {'project':self.options['project']})
+        
         os.makedirs('templates')
         self.create_file("templates/base.html", templates.base_html)
         self.create_file("templates/404.html", templates.t_404_html)
         self.create_file("templates/500.html", templates.t_500_html)
+        
+        os.makedirs('logs')
+        os.makedirs('logs/development')
+        os.makedirs('logs/testing')
+        os.makedirs('logs/production')
+        
+        self.create_file("logs/development/error.log", "")
+        self.create_file("logs/testing/error.log", "")
+        self.create_file("logs/production/error.log", "")
+        
+        self.create_file("logs/development/access.log", "")
+        self.create_file("logs/testing/access.log", "")
+        self.create_file("logs/production/access.log", "")
         
         # updating to original cwd
         os.chdir(old_cwd)
