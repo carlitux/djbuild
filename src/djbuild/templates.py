@@ -7,11 +7,13 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.development.urls'
+ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
 '''
 
 production_urls = '''from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import include
+from django.conf.urls.defaults import handler500
+from django.conf.urls.defaults import handler404
 
 from %(project)s.urls import urlpatterns
 
@@ -36,7 +38,7 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.development.urls'
+ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
 '''
 
 development_urls = '''from django.conf import settings
@@ -68,7 +70,7 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.development.urls'
+ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
 '''
 
 testing_urls = '''from django.conf.urls.defaults import patterns

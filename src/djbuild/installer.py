@@ -246,9 +246,9 @@ class Installer:
         self.create_file('project/production/__init__.py', '', {})
         self.create_file('project/test/__init__.py', '', {})
         
-        self.create_file("project/development/settings.py", templates.development_settings, {'project':self.options['project']})
-        self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project']})
-        self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project']})
+        self.create_file("project/development/settings.py", templates.development_settings, {'project':self.options['project'], 'settings': self.options['settings']})
+        self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project'], 'settings': self.options['settings']})
+        self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project'], 'settings': self.options['settings']})
         
         self.create_file("project/development/urls.py", templates.development_urls, {'project':self.options['project']})
         self.create_file("project/production/urls.py", templates.production_urls, {'project':self.options['project']})
