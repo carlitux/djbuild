@@ -7,7 +7,7 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
+ROOT_URLCONF = '%(project)s.project.production.urls'
 '''
 
 production_urls = '''from django.conf.urls.defaults import patterns
@@ -38,7 +38,7 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
+ROOT_URLCONF = '%(project)s.project.development.urls'
 '''
 
 development_urls = '''from django.conf import settings
@@ -70,7 +70,7 @@ INSTALLED_APPS += (
     # 'django.contrib.admindocs',
 )
 
-ROOT_URLCONF = '%(project)s.project.%(settings)s.urls'
+ROOT_URLCONF = '%(project)s.project.testing.urls'
 '''
 
 testing_urls = '''from django.conf.urls.defaults import patterns

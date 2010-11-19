@@ -246,9 +246,9 @@ class Installer:
         self.create_file('project/production/__init__.py', '', {})
         self.create_file('project/test/__init__.py', '', {})
         
-        self.create_file("project/development/settings.py", templates.development_settings, {'project':self.options['project'], 'settings': self.options['settings']})
-        self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project'], 'settings': self.options['settings']})
-        self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project'], 'settings': self.options['settings']})
+        self.create_file("project/development/settings.py", templates.development_settings, {'project':self.options['project']})
+        self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project']})
+        self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project']})
         
         self.create_file("project/development/urls.py", templates.development_urls, {'project':self.options['project']})
         self.create_file("project/production/urls.py", templates.production_urls, {'project':self.options['project']})
@@ -284,13 +284,13 @@ class Installer:
             if 'local-apps' in old_config and\
                old_config['local-apps'] != self.options['local-apps']:
                 if os.path.exists(old_config['local-apps']):
-                    self.log.info("DjBuild: moving local-apps dir from % to %s"%(old_config['local-apps'], self.options['local-apps']))
+                    self.log.info("DjBuild: moving local-apps dir from %s to %s"%(old_config['local-apps'], self.options['local-apps']))
                     shutil.move(old_config['local-apps'], self.options['local-apps'])
                     
             if 'external-apps' in old_config and\
                old_config['external-apps'] != self.options['external-apps']:
                 if os.path.exists(old_config['external-apps']):
-                    self.log.info("DjBuild: moving external-apps dir from % to %s"%(old_config['external-apps'], self.options['external-apps']))
+                    self.log.info("DjBuild: moving external-apps dir from %s to %s"%(old_config['external-apps'], self.options['external-apps']))
                     shutil.move(old_config['external-apps'], self.options['external-apps'])
             
         if not os.path.exists(self.options['local-apps']):

@@ -13,3 +13,4 @@ pypi or custom url
 05-Nov-2010: adding urls into projects and logs directory
 07-Nov-2010: fixing sdist package
 07-Nov-2010: fixing settings template to load correct url, fixing url into producction
+13-Nov-2010: fixing code that crash when changing directory names into local-apps external-apps
