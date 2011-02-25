@@ -238,21 +238,21 @@ class Installer:
         
         os.makedirs('project/development')
         os.makedirs('project/production')
-        os.makedirs('project/test')
+        os.makedirs('project/testing')
         
         self.create_file('tests/__init__.py', '', {})
         self.create_file('project/__init__.py', '', {})
         self.create_file('project/development/__init__.py', '', {})
         self.create_file('project/production/__init__.py', '', {})
-        self.create_file('project/test/__init__.py', '', {})
+        self.create_file('project/testing/__init__.py', '', {})
         
         self.create_file("project/development/settings.py", templates.development_settings, {'project':self.options['project']})
         self.create_file("project/production/settings.py", templates.production_settings, {'project':self.options['project']})
-        self.create_file("project/test/settings.py", templates.testing_settings, {'project':self.options['project']})
+        self.create_file("project/testing/settings.py", templates.testing_settings, {'project':self.options['project']})
         
         self.create_file("project/development/urls.py", templates.development_urls, {'project':self.options['project']})
         self.create_file("project/production/urls.py", templates.production_urls, {'project':self.options['project']})
-        self.create_file("project/test/urls.py", templates.testing_urls, {'project':self.options['project']})
+        self.create_file("project/testing/urls.py", templates.testing_urls, {'project':self.options['project']})
         
         os.makedirs('templates')
         self.create_file("templates/base.html", templates.base_html)
