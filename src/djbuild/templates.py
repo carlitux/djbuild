@@ -1,5 +1,7 @@
 production_settings = '''from %(project)s.settings import *
 
+# DEBUG = False # is better do this on global settings files, at root project directory
+
 INSTALLED_APPS += (
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -10,10 +12,7 @@ INSTALLED_APPS += (
 ROOT_URLCONF = '%(project)s.project.production.urls'
 '''
 
-production_urls = '''from django.conf.urls.defaults import patterns
-from django.conf.urls.defaults import include
-from django.conf.urls.defaults import handler500
-from django.conf.urls.defaults import handler404
+production_urls = '''from django.conf.urls.defaults import patterns, include, url
 
 from %(project)s.urls import urlpatterns
 
@@ -41,21 +40,14 @@ INSTALLED_APPS += (
 ROOT_URLCONF = '%(project)s.project.development.urls'
 '''
 
-development_urls = '''from django.conf import settings
-from django.conf.urls.defaults import patterns
-from django.conf.urls.defaults import include
+development_urls = '''from django.conf.urls.defaults import patterns, include, url
 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from %(project)s.urls import urlpatterns
 
 urlpatterns = patterns('',
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-    {'document_root': settings.SITE_ROOT + '/static/'
-    , 'show_indexes': True}),
-    (r'^uploads/(?P<path>.*)$', 'django.views.static.serve',
-    {'document_root': settings.SITE_ROOT + '/uploads/'
-    , 'show_indexes': True}),
     #(r'^init/', include('myproject.urls')),
-) + urlpatterns
+) + staticfiles_urlpatterns()
 '''
 
 testing_settings = '''
@@ -73,8 +65,7 @@ INSTALLED_APPS += (
 ROOT_URLCONF = '%(project)s.project.testing.urls'
 '''
 
-testing_urls = '''from django.conf.urls.defaults import patterns
-from django.conf.urls.defaults import include
+testing_urls = '''from django.conf.urls.defaults import patterns, include, url
 
 from %(project)s.urls import urlpatterns
 

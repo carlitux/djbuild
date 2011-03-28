@@ -229,7 +229,7 @@ class Installer:
         
         os.makedirs('docs')
         os.makedirs('tests')
-        os.makedirs('uploads')
+        os.makedirs('media')
         os.makedirs('deploy')
                 
         os.makedirs('static/css')

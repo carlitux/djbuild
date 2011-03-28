@@ -11,6 +11,7 @@ sandbox. You can use either a release version of Django or a
 subversion checkout (by using `trunk` instead of a version number).
 
 The directory structure is based on: http://django.es/blog/convenciones-proyecto-django/
+and now for django-1.3 use previous versions for older django versions.
 
 logs directory to handle separete logs from webserver
 urls into project packages used to handle differents urls for each project

@@ -10,3 +10,4 @@ downloads/
 dist/
 src/djbuild.egg-info/
 src/koe/
+build/
