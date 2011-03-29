@@ -16,3 +16,5 @@ pypi or custom url
 13-Nov-2010: fixing code that crash when changing directory names into local-apps external-apps
 25-Feb-2011: moving project/test to project/testing
 28-Mar-2011: updating to use django1.3 upload files moved to media and django static is as before #read django-staticfiles
+28-Mar-2011: creating src dir if not exists
+29-Mar-2011: fixing template urls, it didn't use global url not it does.

@@ -16,9 +16,9 @@ production_urls = '''from django.conf.urls.defaults import patterns, include, ur
 
 from %(project)s.urls import urlpatterns
 
-urlpatterns = patterns('',
+urlpatterns += patterns('',
     #(r'^pushinit/', include('myproject.urls')),
-) + urlpatterns
+)
 '''
 
 development_settings = '''from %(project)s.settings import *
@@ -45,7 +45,7 @@ development_urls = '''from django.conf.urls.defaults import patterns, include, u
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from %(project)s.urls import urlpatterns
 
-urlpatterns = patterns('',
+urlpatterns += patterns('',
     #(r'^init/', include('myproject.urls')),
 ) + staticfiles_urlpatterns()
 '''
@@ -69,9 +69,9 @@ testing_urls = '''from django.conf.urls.defaults import patterns, include, url
 
 from %(project)s.urls import urlpatterns
 
-urlpatterns = patterns('',
+urlpatterns += patterns('',
     #(r'^init/', include('myproject.urls')),
-) + urlpatterns
+)
 '''
 
 wsgi = '''#!/usr/bin/python

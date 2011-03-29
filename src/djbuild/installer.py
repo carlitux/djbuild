@@ -389,6 +389,9 @@ class Installer:
         del self.options['setup']
         
     def install_project(self, project_dir, project):
+        if not os.path.exists('src'):
+            print "creating src directory, it not exists"
+            os.mkdir('src')
         if not self.options.get('projectegg'):
             if not os.path.exists(os.path.join(project_dir, project)):
                 self.create_project(project_dir, project)
