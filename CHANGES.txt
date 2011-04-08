@@ -18,3 +18,4 @@ pypi or custom url
 28-Mar-2011: updating to use django1.3 upload files moved to media and django static is as before #read django-staticfiles
 28-Mar-2011: creating src dir if not exists
 29-Mar-2011: fixing template urls, it didn't use global url not it does.
+08-Apr-2011: fixing template urls, know serves uploaded files in development mode.
