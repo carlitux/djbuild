@@ -123,18 +123,63 @@ FCGI_OPTIONS = getattr(settings, 'FCGI_OPTIONS', {})
 runfastcgi(FCGI_OPTIONS)
 '''
 
-base_html = '''{% load i18n %}
-<!DOCTYPE html>
-<html>
+base_html = '''{% load i18n %}<!DOCTYPE html>
+
+<!--[if IE 7 ]><html lang="{{ LANGUAGE_CODE }}" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="{{ LANGUAGE_CODE }}" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="{{ LANGUAGE_CODE }}" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="{{ LANGUAGE_CODE }}" class="no-js"> <!--<![endif]-->
+
 <head>
-    <title>New HTML5 page</title>
+
+  <meta charset="utf-8">
+  
+  {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
+  {% if meta_keywords %}<meta name="keywords" content="{{ meta_keywords }}">{% endif %}
+  <meta name="author" content="linkux-it">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- favicon 16x16 -->
+  <link rel="shortcut icon" href="/{{ STATIC_URL }}images/favicon.ico">
+  <!-- apple touch icon 57x57 -->
+  <link rel="apple-touch-icon" href="{{ STATIC_URL }}images/favicon.png">
+  
+  <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script> 
+  
+  <!-- Main style sheet. Change version number in query string to force styles refresh -->
+  <!-- Link element no longer needs type attribute -->
+  <link rel="stylesheet" href="css/screen.css?v=1.0">
+
+  <!-- Modernizr for feature detection of CSS3 and HTML5; must be placed in the "head" -->
+  <!-- Script tag no longer needs type attribute -->
+  <script src="js/modernizr-1.6.min.js"></script>
+
+  <!-- Remove the script reference below if you're using Modernizr -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+  {% block extra_base_head %}{% endblock %}
+  
+  {% block extra_head %}{% endblock %}
+
+  <title>HTML5 template{% block title %}{% if title %} | {{ title }}{% endif %}{% endblock %}</title>
+  
 </head>
+
 <body>
-{% block container %}
-<!-- Add your content here-->
-{% endblock %}
+  
+  <header>
+  </header>
+
+  <footer>
+  </footer>
+  
 </body>
-</html>'''
+
+</html>
+'''
 
 t_404_html = '''{% extends 'base.html' %}
 {% load i18n %}
